@@ -19,7 +19,7 @@ To turn on the school bell functionality, uncomment line 11 and replace server i
 * Image responses (currently sends online school schedule)
 * Looks up type of school day
 * Customized bot activity (watching you)
-* Count of coronavirus cases from webscraping ([Worldmeters](worldometers.info/coronavirus))
+* Count of coronavirus cases from webscraping ([Worldmeters](www.worldometers.info/coronavirus))
 * Calls khan for some calculus help
 
 ## imports
