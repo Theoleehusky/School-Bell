@@ -15,14 +15,13 @@ To turn on the school bell functionality, uncomment line 11 and replace server i
 * Custom text responses
 * Automated school bell
 (Joins all populated voice channels at set times to play the bell)
-   
 * Image responses (currently sends online school schedule)
 * Looks up type of school day
 * Customized bot activity (watching you)
 * Count of coronavirus cases from webscraping ([Worldmeters](https://www.worldometers.info/coronavirus))
 * Calls khan for some calculus help
 
-## imports
+## Imports
 * discord for obvious reasons
 * re (regular expressions) for message parsing
 * bs4 for coronavirus case webscraping
