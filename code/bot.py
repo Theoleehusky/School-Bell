@@ -1,13 +1,8 @@
 import discord
 import re
-import requests
 import time
 import asyncio
-from bs4 import BeautifulSoup
-import os
-import json
-
-path = os.getcwd()
+from corona import corona
 
 
 class MyClient(discord.Client):
@@ -40,38 +35,47 @@ class MyClient(discord.Client):
         if re.search("schedule", message.content):
             await message.channel.send(file=discord.File('references/schedule.png'))
         if re.search(" ap ", message.content):
-            await message.channel.send(file=discord.File('AP.jpg'))
+            await message.channel.send(file=discord.File('references/AP.jpg'))
         if re.search("what day", message.content):
             await message.channel.send('Today: ' + dictionary[time.localtime().tm_yday] + '     Tomorrow: ' + dictionary[time.localtime().tm_yday+1])
         if re.search("covid|corona|wuhan|virus", message.content):
             await message.channel.send("Coronavirus cases: " + corona())
         if message.content == " khan ":
-            await self.youtube(message.author.voice.channel, 'khan')
+            await youtube(message.author.voice.channel, 'khan')
         if message.content == " school bell ":
-            await self.youtube(message.author.voice.channel, 'bell')
+            await youtube(message.author.voice.channel, 'bell')
 
     async def my_background_task(self):
-
-    async def youtube(self, channel, key):
-        voice = await channel.connect()
-        if key == "bell":
-            voice.play(discord.FFmpegPCMAudio('bell.mp3'))
-        elif key == "khan":
-            voice.play(discord.FFmpegPCMAudio('khan.mp3'))
-        time.sleep(1)
-        while voice.is_playing():
+        await self.wait_until_ready()
+        server0 = client.get_guild(694184620811485284)
+        server1 = client.get_guild(696207735590486086)
+        while True:
             await asyncio.sleep(1)
-        await voice.disconnect()
+            t = time.localtime()
+            if 0 <= t.tm_wday <= 4 and t.tm_sec in [0, 1]:
+                if [t.tm_hour, t.tm_min] in [[8, 0], [8, 25], [9, 0], [9, 10], [9, 15], [10, 15], [10, 25], [10, 30],
+                                             [11, 30], [12, 25], [12, 30], [13, 30], [13, 40], [13, 45], [14, 45]]:
+                    for channel in server0.voice_channels + server1.voice_channels:
+                        if channel.members:
+                            try:
+                                await youtube(channel, 'bell')
+                                print(channel, end=': ')
+                                print(t.tm_hour, t.tm_min)
+                            except:
+                                print(channel)
+                                print(channel.members)
 
 
-URL = 'https://www.worldometers.info/coronavirus/'
-
-
-def corona():
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, 'html.parser')
-    results = soup.find(style="color:#aaa")
-    return results.string.split(">")[0]
+async def youtube(channel, key):
+    voice = await channel.connect()
+    if key == "bell":
+        voice.play(discord.FFmpegPCMAudio('references/bell.mp3'))
+    elif key == "khan":
+        voice.play(discord.FFmpegPCMAudio('references/khan.mp3'))
+    time.sleep(1)
+    while voice.is_playing():
+        await asyncio.sleep(1)
+    await voice.disconnect()
 
 
 dictionary = {}
@@ -90,9 +94,7 @@ for day in range(104, 367):
         n = n % 4
 
 
-with open(os.path.join(path, 'code/references/token.txt'), 'r') as f:
-    token = json.load(f)
-
+with open('references/token.txt', 'r') as f:
+    token = f.read()
 client = MyClient()
 client.run(token)
-
