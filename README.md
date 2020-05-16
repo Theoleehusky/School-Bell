@@ -8,15 +8,13 @@ A botched discord bot (meant for my school).
 *Image under free liscence from joypixels.
 
 ## Setup
-Add your token as token.txt to the reference file.
+Create token.txt under references and paste bot token.
+To turn on the school bell functionality, uncomment line 11 and replace server ids (line 50, 51).
 
 ## Functionalities
 * Custom text responses
-* Automated school bell 
-   
-   Joins populated voice channels at set times to play an audio file
-   
-   (Currently turned off, uncomment line 11 and replace server ids)
+* Automated school bell
+(Joins all populated voice channels at set times to play the bell)
    
 * Image responses (currently sends online school schedule)
 * Looks up type of school day
@@ -25,9 +23,9 @@ Add your token as token.txt to the reference file.
 * Calls khan for some calculus help
 
 ## imports
-* bs4 for coronavirus case webscraping
 * discord for obvious reasons
 * re (regular expressions) for message parsing
+* bs4 for coronavirus case webscraping
 
 ## Todo
 * "stop" command to kick bot
