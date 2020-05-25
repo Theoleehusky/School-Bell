@@ -1,11 +1,9 @@
 # School Bell
 A botched discord bot (meant for my school).
 
-(For myself to look back in a few years and cringe at)
+(For myself to look back in a few years and have a good laugh)
 
 ![alt text](https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/socialmedia/emoji-one/104/bell_1f514.png)
-
-*Image under free liscence from joypixels.
 
 ## Setup
 Create token.txt under references and paste bot token.
