@@ -1,5 +1,5 @@
 # School Bell
-A botched discord bot (meant for my school).
+A botched discord bot (specialized for my school).
 
 (For myself to look back in a few years and have a good laugh)
 
